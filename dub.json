@@ -1,0 +1,9 @@
+{
+	"authors": [
+		"Kirill Saidov"
+	],
+	"copyright": "Copyright © 2021, Kirill Saidov",
+	"description": "Fromago - a ratio calculator for cooking cheese",
+	"license": "GPLv3",
+	"name": "fromago"
+}
