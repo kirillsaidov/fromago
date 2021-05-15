@@ -14,7 +14,6 @@ auto fromagoSubmenuItems() {
 	];
 }
 
-// exit item in the 'Fromago' submenu dropdown list
 class QuitItem : MenuItem {
 	immutable label = "Quit";
 	
@@ -31,7 +30,6 @@ class QuitItem : MenuItem {
 	}
 }
 
-// about item in the 'Fromago' submenu dropdown list
 class AboutItem : MenuItem {
 	immutable label = "About";
 	

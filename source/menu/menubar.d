@@ -7,6 +7,7 @@ import meta;
 import menu.submenu.fromago.items;
 import menu.submenu.file.items;
 import menu.submenu.edit.items;
+import menu.submenu.help.items;
 
 // the menu bar itself
 class FromagoMenuBar : MenuBar {
@@ -24,14 +25,11 @@ class FromagoMenuBar : MenuBar {
 		// adding a 'Edit' submenu header dropdown list and its submenu items
 		append(new MenuHeader("Edit", new Submenu(editSubmenuItems())));
 		
-		//...
+		// adding a 'Calculator' submenu header dropdown list and its submenu items
 		append(new MenuHeader("Calculator", new Submenu([new QuitItem()])));
 		
 		// adding a 'Help' submenu header dropdown list and its submenu items
-		append(new MenuHeader("Help", new Submenu([
-			new AboutItem(), 
-			new DocumentationItem()
-		])));
+		append(new MenuHeader("Help", new Submenu(helpSubmenuItems())));
 	}
 }
 

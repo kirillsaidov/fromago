@@ -21,7 +21,6 @@ auto fileSubmenuItems() {
 	];
 }
 
-// new file item in the 'File' submenu dropdown list
 class NewFileItem : MenuItem {
 	immutable label = "New file";
 	
@@ -38,7 +37,6 @@ class NewFileItem : MenuItem {
 	}
 }
 
-// open file item in the 'Fromago' submenu dropdown list
 class OpenFileItem : MenuItem {
 	immutable label = "Open file";
 	
@@ -55,7 +53,6 @@ class OpenFileItem : MenuItem {
 	}
 }
 
-// close file item in the 'File' submenu dropdown list
 class CloseFileItem : MenuItem {
 	immutable label = "Close file";
 	
@@ -72,7 +69,6 @@ class CloseFileItem : MenuItem {
 	}
 }
 
-// save item in the 'Fromago' submenu dropdown list
 class SaveFileItem : MenuItem {
 	immutable label = "Save";
 	
@@ -89,7 +85,6 @@ class SaveFileItem : MenuItem {
 	}
 }
 
-// save as item in the 'File' submenu dropdown list
 class SaveAsFileItem : MenuItem {
 	immutable label = "Save as";
 	

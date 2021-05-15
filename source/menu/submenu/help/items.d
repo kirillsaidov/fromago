@@ -1,20 +1,20 @@
-module menu.submenu.edit.items;
+module menu.submenu.help.items;
 
 // the meta gtkd package
 import meta;
 
-// edit submenu
-import menu.submenu.edit.changefont;
+// help submenu
+import menu.submenu.help.documentation;
 
-// return all 'Edit' submenu items
-MenuItem[] editSubmenuItems() {
+// return all 'Help' submenu items
+MenuItem[] helpSubmenuItems() {
 	return [
-		new ChangeFont()
+		new DocumentationItem()
 	];
 }
 
-class ChangeFont : MenuItem {
-	immutable label = "Change font";
+class DocumentationItem : MenuItem {
+	immutable label = "Documentation";
 	
 	// constructor
 	this() {
@@ -28,4 +28,3 @@ class ChangeFont : MenuItem {
 		Main.quit();
 	}
 }
-
