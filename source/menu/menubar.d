@@ -8,6 +8,7 @@ import menu.submenu.fromago.items;
 import menu.submenu.file.items;
 import menu.submenu.edit.items;
 import menu.submenu.help.items;
+import menu.submenu.calculator.items;
 
 // the menu bar itself
 class FromagoMenuBar : MenuBar {
@@ -26,7 +27,7 @@ class FromagoMenuBar : MenuBar {
 		append(new MenuHeader("Edit", new Submenu(editSubmenuItems())));
 		
 		// adding a 'Calculator' submenu header dropdown list and its submenu items
-		append(new MenuHeader("Calculator", new Submenu([new QuitItem()])));
+		append(new MenuHeader("Calculator", new Submenu(calculatorSubmenuItems())));
 		
 		// adding a 'Help' submenu header dropdown list and its submenu items
 		append(new MenuHeader("Help", new Submenu(helpSubmenuItems())));
@@ -59,40 +60,12 @@ class Submenu : Menu {
 	}
 }
 
-/* ------------------------------ Help submenu items ------------------------------- */
 
-// exit label in the 'File' dropdown list
-class DocumentationItem : MenuItem {
-	immutable quitLabel = "Documentation";
-	
-	// constructor
-	this() {
-		// calling parent's constructor
-		super(quitLabel);
-		addOnActivate(&quit);
-	}
-	
-	// execute when 'Quit' is pressed
-	void quit(MenuItem mi) {
-		Main.quit();
-	}
-}
 
-// exit label in the 'File' dropdown list
-class AboutItem : MenuItem {
-	immutable quitLabel = "About";
-	
-	// constructor
-	this() {
-		// calling parent's constructor
-		super(quitLabel);
-		addOnActivate(&quit);
-	}
-	
-	// execute when 'Quit' is pressed
-	void quit(MenuItem mi) {
-		Main.quit();
-	}
-}
+
+
+
+
+
 
 
