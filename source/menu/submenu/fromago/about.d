@@ -7,40 +7,6 @@ import meta;
 import gtk.DrawingArea;
 import cairo.Context;
 
-// AboutWindow window app
-class AboutWindow : MainWindow {
-	// variables
-	Main main;
-	
-	this(const string windowTitle, const int windowWidth, const int windowHeight, string[] args = null) {
-		// init a new window thread
-		main.init(args);
-		
-		// call the parent constructor
-		super(windowTitle);
-		
-		// set window size
-		setSizeRequest(windowWidth, windowHeight);
-		
-		// attach onDestroy function
-		addOnDestroy(&quitApp);	
-				
-		// add gui box and TextDrawingArea to it
-		add(new GUIBox!(TextDrawingArea)(Orientation.VERTICAL, 10, new TextDrawingArea(), true, true, 0));
-		
-		// run the app
-		showAll();
-		
-		// run
-		main.run();
-	}
-	
-	void quitApp(Widget widget) {		
-		// quit
-		main.quit();
-	}
-}
-
 // text drawing area
 class TextDrawingArea : DrawingArea {
 	// area assigned to to DrawingArea by its parent

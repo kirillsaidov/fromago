@@ -42,7 +42,12 @@ class AboutItem : MenuItem {
 	
 	// execute when 'onClicked' is pressed
 	void onClicked(MenuItem mi) {
-		AboutWindow about = new AboutWindow("About", 360, 210);
+		Window about = new Window("About", 360, 210, (MainWindow mw) {
+			mw.add(new GUIBox(Orientation.VERTICAL, 0, (Box b) {
+				// packing the element into guibox
+				b.packStart(new TextDrawingArea(), true, true, 0);
+			}));
+		});
 	}
 }
 
