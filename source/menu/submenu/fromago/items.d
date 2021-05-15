@@ -42,7 +42,7 @@ class AboutItem : MenuItem {
 	
 	// execute when 'onClicked' is pressed
 	void onClicked(MenuItem mi) {
-		//...
+		AboutWindow about = new AboutWindow("About", 360, 210);
 	}
 }
 

@@ -20,47 +20,63 @@ void main(string[] args) {
 class GUI : MainWindow {
 	// variables
 	immutable windowTitle = "Fromago Calc";
-	immutable windowWidth = 640;
-	immutable windowHeight = 480;
 		
 	this() {
 		// call the parent constructor
 		super(windowTitle);
 		
-		// attach onDestroy function
-		addOnDestroy(&quitApp);	
-		
 		// set window size
 		setSizeRequest(windowWidth, windowHeight);
 		
-		// add gui box
-		GUIBox guibox = new GUIBox();
-		add(guibox);
+		// attach onDestroy function
+		addOnDestroy(&quitApp);
 		
+		// attach onScroll function
+		addOnScroll(&onScroll);
+				
+		// add gui box element to it
+		GUIBoxMain gbm = new GUIBoxMain();
+		add(gbm);
+				
 		// run the app
 		showAll();
 	}
-	
 		
 	void quitApp(Widget widget) {		
 		// quit
 		Main.quit();
 	}
-}
-
-// menu bar box
-class GUIBox : Box {
-	immutable padding = 10;
 	
-	this() {
-		// calling parent's constructor
-		super(Orientation.VERTICAL, padding);
-		
-		// creating a menu bar
-		FromagoMenuBar menuBar = new FromagoMenuBar();
-    	packStart(menuBar, false, false, 0);		
+	bool onScroll(Event event, Widget widget) {
+		// scrolling is false by default
+		bool scrolling = false;
+
+		if(event.scroll.direction == ScrollDirection.DOWN) {
+			// set scrolling to true
+			scrolling = true;
+		} else if(event.scroll.direction == ScrollDirection.UP) {
+			// set scrolling to true
+			scrolling = true;
+		}
+
+		return scrolling;
 	}
 }
+
+class GUIBoxMain : Box {
+	this() {
+		// calling parent's constructor
+		super(Orientation.VERTICAL, 0);
+
+		// packing the element into guibox
+		packStart(new FromagoMenuBar(), false, false, 0);
+	}
+}
+
+
+
+
+
 
 
 
