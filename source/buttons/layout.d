@@ -4,24 +4,21 @@ module buttons.layout;
 import meta;
 
 // calc button
-import buttons.calcbuttons;
+import buttons.calcbutton;
 
 class ScrollLayout : ScrolledWindow {
 	// constructor
-	this() {
+	this(void function(ScrolledWindow sw) addLayout) {
 		setSizeRequest(windowWidth, windowHeight);
 		
-		add(new ButtonsLayout());
+		// add a layout
+		addLayout(this);
 	}
 }
 
 class ButtonsLayout : Layout {
-	// variables
-	private const int xmargin = 16; 
-	private const int ymargin = 9;
-	
 	// constructor
-	this() {
+	this(CalcButton[] buttons, const int xmargin, const int ymargin) {
 		// calling parent's constructor
 		super(null, null);
 		
@@ -30,14 +27,11 @@ class ButtonsLayout : Layout {
 		
 		// adding buttons
 		int ypos = ymargin;
-		foreach(button; getAllButtons()) {
+		foreach(button; buttons) {
 			put(button, xmargin, ypos);
 			
 			ypos += button.getHeight() + ymargin;
-		}
-		
-		//CalcButton
-		//put(myButton, buttonX, buttonY);	
+		}	
 	}
 }
 

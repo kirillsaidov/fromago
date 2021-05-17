@@ -1,4 +1,4 @@
-module menu.submenu.fromago.about;
+module menu.submenu.about;
 
 // the meta gtkd package
 import meta;

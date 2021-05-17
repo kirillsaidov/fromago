@@ -3,11 +3,6 @@ module menu.menubar;
 // the meta gtkd package
 import meta;
 
-// the submenu
-import menu.submenu.fromago.items;
-import menu.submenu.help.items;
-import menu.submenu.calculator.items;
-
 // the menu bar itself
 class FromagoMenuBar : MenuBar {
 	// constructor
