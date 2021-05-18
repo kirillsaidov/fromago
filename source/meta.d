@@ -133,6 +133,26 @@ class PadEntry : HBox {
 		// calling parent's constructor
 		super(entry, justify);
 	}
+	
+	// visibily
+	void setVisibility(bool state) {
+		entry.setVisibility(state);
+	}
+	
+	// character width
+	void setWidthChars(int width) {
+		entry.setWidthChars(width);
+	}
+	
+	// get data
+	string getText() {
+		return entry.getText();
+	}
+	
+	// set text
+	void setText(const string text) {
+		entry.setText(text);
+	}
 }
 
 /* ************************************* SUBMENU ITEMS ************************************* */
@@ -150,35 +170,34 @@ class SubmenuItem : MenuItem {
 
 /* ************************************* DIALOG WINDOW ************************************* */
 
-// a dialog window
-class FromagoDialog : Dialog {
-	// variables
-	private Grid grid;
-	
-	this(Window parent, const string dialogTitle, string[] buttons, ResponseType[] responseType, void function(Dialog d) addAction, Grid grid) {
+// dialog interface
+interface IDialog {
+	void onAction(int, Dialog);
+	Grid getInstance();
+}
+
+// a dialog form that is inherited by custom dialogs 
+// (it is an instruction, on what and how to draw, what to do) 
+abstract class DialogForm: Grid, IDialog {}
+
+// a dialog window that accepts a dialog form and executes it
+class DialogWindow : Dialog {
+	// constructor
+	this(Window parent, const string dialogTitle, string[] buttons, ResponseType[] responseType, DialogForm d) {
 		// calling parent constructor
-		super(dialogTitle, parent, DialogFlags.MODAL, buttons, responseType);
+		super(dialogTitle, parent, DialogFlags.MODAL | DialogFlags.DESTROY_WITH_PARENT, buttons, responseType);
 		
 		// create new content area
-		getContentArea().add(grid);
+		getContentArea().add(d.getInstance);
 		getContentArea().showAll();
-		
+				
 		// addActions
-		addAction(this);
+		addOnResponse(&d.onAction);
 		
 		// run and quit
 		run();
-		destroy();
-	}
-	
-	Grid get() {
-		return grid;
 	}
 }
-
-
-
-
 
 
 
