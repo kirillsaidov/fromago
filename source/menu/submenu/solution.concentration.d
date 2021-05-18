@@ -72,7 +72,7 @@ class CalculatorSolutionConcentration : DialogForm {
 		
 		entrySolutionQuantity = new PadEntry(BoxJustify.Left, "0");
 		attach(entrySolutionQuantity, 1, 3, 1, 1);
-		
+				
 		// column 3
 		labelConcentrationUnit = new PadLabel(BoxJustify.Left, "%");
 		attach(labelConcentrationUnit, 2, 0, 1, 1);
@@ -111,21 +111,23 @@ class CalculatorSolutionConcentration : DialogForm {
 						return;
 					}
 					
-					// calculating solution concentration based off
-					// substance quantity and solvent quantity
+					// calculations
 					if(data["substance"] && data["solvent"]) {
+						// calculating solution concentration based off substance quantity and solvent quantity
 						auto temp_concentration = calcSolutionConcentration(data["substance"], data["solvent"]);
 						auto temp_solutionq = calcSolutionQuantity(data["substance"], data["solvent"]);
 						
 						entryConcentration.setText(temp_concentration);
 						entrySolutionQuantity.setText(temp_solutionq);
 					} else if(data["%"] && data["solution"]) {
+						// calculating substance quantity and solvent quantity
 						auto temp_substanceq = calcSubstanceQuantity(data["%"], data["solution"]);
 						auto temp_solventq = calcSolventQuantity(to!float(temp_substanceq), data["solution"]);
 						
 						entrySubstanceQuantity.setText(temp_substanceq);
 						entrySolventQuantity.setText(temp_solventq);
-					} else if(data["substance"] && data["solution"]) {
+					} else if(data["substance"] && data["solution"]) { 
+						// calculating solution concentration based off substance quantity and solution quantity
 						auto temp_solventq = calcSolventQuantity(data["substance"], data["solution"]);
 						auto temp_concentration = calcSolutionConcentration(data["substance"], to!float(temp_solventq));
 						
