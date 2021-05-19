@@ -162,10 +162,10 @@ class CalculatorSolutionConcentration : DialogForm {
 	// get all data
 	private float[string] getData() {
 		return to!(float[string])([
-			"%" : entryConcentration.getText(),
-			"substance" : entrySubstanceQuantity.getText(),
-			"solvent" : entrySolventQuantity.getText(),
-			"solution" : entrySolutionQuantity.getText()
+			"%" : entryConcentration.getText().strToFloat(),
+			"substance" : entrySubstanceQuantity.getText().strToFloat(),
+			"solvent" : entrySolventQuantity.getText().strToFloat(),
+			"solution" : entrySolutionQuantity.getText().strToFloat()
 		]);
 	}
 	
