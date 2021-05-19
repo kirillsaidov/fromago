@@ -203,6 +203,7 @@ class DialogWindow : Dialog {
 
 /* ************************************ OTHER FUNCTIONS ************************************ */
 
+// convert a decimal number string to float
 float strToFloat(const string text) {
 	import std.array: replace;
 	import std.conv: to;
@@ -210,7 +211,14 @@ float strToFloat(const string text) {
 	return (text.replace(",", ".").to!float);
 }
 
-
+string replaceEmpty(const string oldValue, const string newValue) {
+	import std.array: empty;
+	
+	if(oldValue.empty) {
+		return newValue;
+	}
+	return oldValue;
+}
 
 
 
