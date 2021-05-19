@@ -32,6 +32,8 @@ enum BoxJustify {
 	Left, Right, Center
 }
 
+/* ******************************* MAIN WINDOW AND GUI BOXES ******************************* */
+
 // GUI window
 class Window : MainWindow {
 	// main window thread
@@ -199,10 +201,14 @@ class DialogWindow : Dialog {
 	}
 }
 
+/* ************************************ OTHER FUNCTIONS ************************************ */
 
-
-
-
+float strToFloat(const string text) {
+	import std.array: replace;
+	import std.conv: to;
+	
+	return (text.replace(",", ".").to!float);
+}
 
 
 

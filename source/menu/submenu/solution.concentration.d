@@ -122,14 +122,14 @@ class CalculatorSolutionConcentration : DialogForm {
 					} else if(data["%"] && data["solution"]) {
 						// calculating substance quantity and solvent quantity
 						auto temp_substanceq = calcSubstanceQuantity(data["%"], data["solution"]);
-						auto temp_solventq = calcSolventQuantity(to!float(temp_substanceq), data["solution"]);
+						auto temp_solventq = calcSolventQuantity(strToFloat(temp_substanceq), data["solution"]);
 						
 						entrySubstanceQuantity.setText(temp_substanceq);
 						entrySolventQuantity.setText(temp_solventq);
 					} else if(data["substance"] && data["solution"]) { 
 						// calculating solution concentration based off substance quantity and solution quantity
 						auto temp_solventq = calcSolventQuantity(data["substance"], data["solution"]);
-						auto temp_concentration = calcSolutionConcentration(data["substance"], to!float(temp_solventq));
+						auto temp_concentration = calcSolutionConcentration(data["substance"], strToFloat(temp_solventq));
 						
 						entryConcentration.setText(temp_concentration);
 						entrySolventQuantity.setText(temp_solventq);
