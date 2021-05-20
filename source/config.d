@@ -6,7 +6,7 @@ import meta;
 // the submenu
 import menu.submenu.about;
 import menu.submenu.solution.concentration;
-import menu.submenu.substance.quantity;
+import menu.submenu.salting.time;
 
 // buttons
 import buttons.calcbutton;
@@ -20,9 +20,9 @@ auto getAllButtons() {
 			&calculateSolutionConcentration
 		),
 		new CalcButton(
-			"Calculate substance quantity",
+			"Calculate salting time",
 			240, 30,
-			&calculateSubstanceQuantity
+			&calculateSaltingTime
 		)
 	];
 }
@@ -43,7 +43,7 @@ MenuItem[] calculatorSubmenuItems() {
 			(mi) {
 				mi.addOnActivate(
 					(mi) {
-						calculateSubstanceQuantity();
+						calculateSaltingTime();
 					}
 				);
 			}

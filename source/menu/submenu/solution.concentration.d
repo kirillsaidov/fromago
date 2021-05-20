@@ -122,17 +122,24 @@ class CalculatorSolutionConcentration : DialogForm {
 					} else if(data["%"] && data["solution"]) {
 						// calculating substance quantity and solvent quantity
 						auto temp_substanceq = calcSubstanceQuantity(data["%"], data["solution"]);
-						auto temp_solventq = calcSolventQuantity(strToFloat(temp_substanceq), data["solution"]);
+						auto temp_solventq = calcSolventQuantity(strTo!float(temp_substanceq), data["solution"]);
 						
 						entrySubstanceQuantity.setText(temp_substanceq);
 						entrySolventQuantity.setText(temp_solventq);
 					} else if(data["substance"] && data["solution"]) { 
 						// calculating solution concentration based off substance quantity and solution quantity
 						auto temp_solventq = calcSolventQuantity(data["substance"], data["solution"]);
-						auto temp_concentration = calcSolutionConcentration(data["substance"], strToFloat(temp_solventq));
+						auto temp_concentration = calcSolutionConcentration(data["substance"], strTo!float(temp_solventq));
 						
 						entryConcentration.setText(temp_concentration);
 						entrySolventQuantity.setText(temp_solventq);
+					} else if(data["%"] && data["solvent"]) {
+						// calculating substance quantity and solution quantity
+						auto temp_solutionq = calcSolutionQuantity2(data["%"], data["solvent"]);
+						auto temp_substanceq = calcSubstanceQuantity(data["%"], strTo!float(temp_solutionq));
+						
+						entrySolutionQuantity.setText(temp_solutionq);
+						entrySubstanceQuantity.setText(temp_substanceq);
 					}
 				}
 				break;
@@ -152,6 +159,7 @@ class CalculatorSolutionConcentration : DialogForm {
 		return this;
 	}
 	
+	// sets everything to zero
 	private void clearEntries() {
 		entryConcentration.setText("0");
 		entrySolutionQuantity.setText("0");
@@ -162,10 +170,10 @@ class CalculatorSolutionConcentration : DialogForm {
 	// get all data
 	private float[string] getData() {
 		return to!(float[string])([
-			"%" : entryConcentration.getText().replaceEmpty("0").strToFloat(),
-			"substance" : entrySubstanceQuantity.getText().replaceEmpty("0").strToFloat(),
-			"solvent" : entrySolventQuantity.getText().replaceEmpty("0").strToFloat(),
-			"solution" : entrySolutionQuantity.getText().replaceEmpty("0").strToFloat()
+			"%" : entryConcentration.getText().replaceEmptyWith("0").strTo!float(),
+			"substance" : entrySubstanceQuantity.getText().replaceEmptyWith("0").strTo!float(),
+			"solvent" : entrySolventQuantity.getText().replaceEmptyWith("0").strTo!float(),
+			"solution" : entrySolutionQuantity.getText().replaceEmptyWith("0").strTo!float()
 		]);
 	}
 	
@@ -177,6 +185,11 @@ class CalculatorSolutionConcentration : DialogForm {
 	// calculating solution quantity
 	private string calcSolutionQuantity(float substanceq, float solventq) {
 		return (to!(string)(substanceq + solventq));
+	}
+	
+	// calculating solution quantity based off concetration and solvent quantity
+	private string calcSolutionQuantity2(float concentration, float solventq) {
+		return (to!(string)(solventq / (1 - concentration / 100)));
 	}
 	
 	// calculating substance quantity

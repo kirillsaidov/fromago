@@ -204,14 +204,14 @@ class DialogWindow : Dialog {
 /* ************************************ OTHER FUNCTIONS ************************************ */
 
 // convert a decimal number string to float
-float strToFloat(const string text) {
+float strTo(T)(const string text) {
 	import std.array: replace;
 	import std.conv: to;
 	
-	return (text.replace(",", ".").to!float);
+	return (text.replace(",", ".").to!T);
 }
 
-string replaceEmpty(const string oldValue, const string newValue) {
+string replaceEmptyWith(const string oldValue, const string newValue) {
 	import std.array: empty;
 	
 	if(oldValue.empty) {
