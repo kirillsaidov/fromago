@@ -87,7 +87,7 @@ class CalculatorSaltingTime : DialogForm {
 		labelCheeseTotalWeightUnit = new PadLabel(BoxJustify.Left, "grams");
 		attach(labelCheeseTotalWeightUnit, 2, 2, 1, 1);
 		
-		labelTotalSaltingTimeUnit = new PadLabel(BoxJustify.Left, "minutes");
+		labelTotalSaltingTimeUnit = new PadLabel(BoxJustify.Left, "h-hours, m-minutes");
 		attach(labelTotalSaltingTimeUnit, 2, 3, 1, 1);
 		
 		// set margin space
@@ -113,7 +113,7 @@ class CalculatorSaltingTime : DialogForm {
 					auto temp_coef = calcCoefficient(data["time"], data["%"]);
 					if(data["%"] && data["time"] && data["weight"]) {
 						// calculating salting time
-						auto temp_saltingTime = calcSaltingTime(data["weight"], data["%"], temp_coef);
+						auto temp_saltingTime = calcTotalSaltingTimeReadable(data["weight"], data["%"], temp_coef);
 						
 						entryTotalSaltingTime.setText(temp_saltingTime);
 					} else if(data["%"] && !data["time"]) {
@@ -156,7 +156,7 @@ class CalculatorSaltingTime : DialogForm {
 			"%" : entryConcentration.getText().replaceEmptyWith("0").strTo!float(),
 			"time" : entryRequiredTime.getText().replaceEmptyWith("0").strTo!float(),
 			"weight" : entryCheeseTotalWeight.getText().replaceEmptyWith("0").strTo!float(),
-			"saltingTime" : entryTotalSaltingTime.getText().replaceEmptyWith("0").strTo!float()
+			"saltingTime" : 0
 		]);
 	}
 	
@@ -165,14 +165,23 @@ class CalculatorSaltingTime : DialogForm {
 		return (time / concentration);
 	}
 	
+	// calculating salting time (readable human-friendly format)
+	private string calcTotalSaltingTimeReadable(float weight, float concentration, float coef) {
+		float salting_time = weight / 100 * concentration * coef / 60;
+		float hours = to!float(to!int(salting_time));
+		float minutes = (salting_time - hours) * 60;
+		
+		return (to!string(hours) ~ "h " ~ to!string(minutes) ~ "m");
+	}
+	
 	// calculating salting time
-	private string calcSaltingTime(float weight, float concentration, float coef) {
-		return (to!(string)(weight / 100 * concentration * coef));
+	private string calcTotalSaltingTime(float weight, float concentration, float coef) {
+		return (to!string(weight / 100 * concentration * coef / 60));
 	}
 	
 	// calculating new required time
 	private string calcRequiredTime(float concentration, float coef) {
-		return (to!(string)(concentration * coef));
+		return (to!string(concentration * coef));
 	}
 }
 
