@@ -8,6 +8,7 @@ public import gtk.Menu;
 public import gtk.Button;
 public import gtk.MenuBar;
 public import gtk.MenuItem;
+public import gtk.SeparatorMenuItem;
 public import gtk.Widget;
 public import gtk.Dialog;
 public import gtk.Layout;

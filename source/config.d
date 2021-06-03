@@ -67,6 +67,7 @@ MenuItem[] fromagoSubmenuItems() {
 				});
 			}
 		),
+		new SeparatorMenuItem(),
 		new SubmenuItem("Quit", 
 			(mi) {
 				mi.addOnActivate(
