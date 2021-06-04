@@ -1,96 +1,79 @@
 module config;
 
-// the meta gtkd package
-import meta;
+import std.string: strip;
+import std.stdio: File, readln;
+import std.file: exists, mkdir;
+import std.path: buildPath;
+import std.conv: to;
 
-// the submenu
-import menu.submenu.about;
-import menu.submenu.solution.concentration;
-import menu.submenu.salting.time;
-
-// buttons
-import buttons.calcbutton;
-
-// returns a list of all buttons
-auto getAllButtons() {
-	return [
-		new CalcButton(
-			"Calculate the solution concentration",
-			240, 30,
-			&calculateSolutionConcentration
-		),
-		new CalcButton(
-			"Calculate salting time",
-			240, 30,
-			&calculateSaltingTime
-		)
-	];
+// public variables
+public {
+	// language code (localization)
+	LangCode languageCode = LangCode.English;
+	
+	// language codes
+	enum LangCode: ubyte {
+		English = 0,
+		Russian, 
+	}
+	
+	// sets up a config directory for the application
+	void configSetup() {
+		// check if config directory exists
+		if(!configdir.exists) {
+			configdir.mkdir;
+		}
+	
+		languageCode = loadLangConfig();
+	}
+	
+	// changes the language of Fromago and saves it
+	bool changeLangConfig(LangCode langCode) {		
+		if(languageCode != langCode) {
+			saveLangConfig(langCode);
+			return true;
+		}
+		
+		return false;
+	}
 }
 
-// return all 'Help' submenu items
-MenuItem[] calculatorSubmenuItems() {
-	return [
-		new SubmenuItem("Calculate the solution concentration", 
-			(MenuItem mi) {
-				mi.addOnActivate(
-					(mi) {
-						calculateSolutionConcentration();
-					}
-				);
-			}
-		), 
-		new SubmenuItem("Calculate substance quantity", 
-			(mi) {
-				mi.addOnActivate(
-					(mi) {
-						calculateSaltingTime();
-					}
-				);
-			}
-		)
-	];
+private {
+	// config directories and files
+	immutable string configdir = ".config";
+	immutable string configlang = "lang.config";
+	immutable string path_configlang = buildPath(configdir, configlang);
+
+	// returns the code of the language (it looks for language.config file in )
+	LangCode loadLangConfig() {	
+		// check if file exists, if not, create the file; get the lang code
+		LangCode langCode = LangCode.English;
+		if(!path_configlang.exists) {
+			auto file = File(path_configlang, "w");
+			file.write(LangCode.English);
+			file.close();
+		} else {
+			auto file = File(path_configlang, "r");
+			langCode = file.readln().strip().to!LangCode;
+			file.close();
+		}
+	
+		return langCode;
+	}
+	
+	// save file config
+	void saveLangConfig(LangCode langCode) {		
+		// save the config
+		auto file = File(path_configlang, "w");
+		file.write(langCode);
+		file.close();
+	}
 }
 
-// return all 'Fromago' submenu items
-MenuItem[] fromagoSubmenuItems() {
-	return [
-		new SubmenuItem("About",		
-			(mi) {
-				mi.addOnActivate((mi) {
-					Window about = new Window("About", 360, 210, 
-						(mw) {
-							mw.add(new GUIBox(Orientation.VERTICAL, 0, (Box b) {
-							// packing the element into guibox
-							b.packStart(new TextDrawingArea(), true, true, 0);
-						}));
-					});
-				});
-			}
-		),
-		new SeparatorMenuItem(),
-		new SubmenuItem("Quit", 
-			(mi) {
-				mi.addOnActivate(
-					(mi) {
-						Main.quit();
-					}
-				);
-			}
-		)
-	];
-}
 
-// return all 'Help' submenu items
-MenuItem[] helpSubmenuItems() {
-	return [
-		new SubmenuItem("Documentation", 
-			(mi) {
-				mi.addOnActivate(
-					(mi) {
-						Main.quit();
-					}
-				);
-			}
-		)
-	];
-}
+
+
+
+
+
+

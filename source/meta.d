@@ -18,8 +18,14 @@ public import gtk.Label;
 public import gtk.ScrolledWindow;
 public import gdk.Event;
 
-// my layout config
+// fromago gui layout
+public import layout;
+
+// fromago app config
 public import config;
+
+// localization support
+public import localization;
 
 //window dimensions
 immutable windowWidth = 640;
@@ -199,6 +205,44 @@ class DialogWindow : Dialog {
 		
 		// run and quit
 		run();
+	}
+}
+
+// custom dialog action handler (contains a single message and buttons + onAction, when one of the buttons is pressed)
+class CustomDialogAction : DialogForm {	
+	// variables
+	private PadLabel label;
+	
+	// custom onAction function
+	void function(int, Dialog) action;
+	
+	//constructor
+	this(string msg, void function(int, Dialog) onAction, int borderWidth = 7, int marginBottom = 7) {
+		// calling parent's constructor
+		super();
+		
+		// save function
+		action = onAction;
+		
+		// border width
+		setBorderWidth(borderWidth);
+		
+		// column 1
+		label = new PadLabel(BoxJustify.Center, msg);
+		attach(label, 1, 0, 1, 1);
+		
+		// set margin space
+		setMarginBottom(marginBottom);
+	}
+	
+	// do something on action
+	void onAction(int r, Dialog d) {
+		action(r, d);
+	}
+	
+	// get grid instance
+	Grid getInstance() {
+		return this;
 	}
 }
 

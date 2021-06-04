@@ -87,13 +87,11 @@ class CalculatorSolutionConcentration : DialogForm {
 		attach(labelSolutionQuantityUnit, 2, 3, 1, 1);
 		
 		// set margin space
-		setMarginBottom(7);
+		setMarginBottom(marginBottom);
 	}
 	
 	// do something on action
 	void onAction(int r, Dialog d) {
-		import std.stdio: writeln;
-
 		switch(r) with(ResponseType) {
 			case YES:
 				{
@@ -202,6 +200,7 @@ class CalculatorSolutionConcentration : DialogForm {
 		return (to!(string)(solutionq - substanceq));
 	}
 }
+
 
 
 

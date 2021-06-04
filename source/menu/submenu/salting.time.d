@@ -91,13 +91,11 @@ class CalculatorSaltingTime : DialogForm {
 		attach(labelTotalSaltingTimeUnit, 2, 3, 1, 1);
 		
 		// set margin space
-		setMarginBottom(7);
+		setMarginBottom(marginBottom);
 	}
 	
 	// do something on action
 	void onAction(int r, Dialog d) {
-		import std.stdio: writeln;
-
 		switch(r) with(ResponseType) {
 			case YES:
 				{

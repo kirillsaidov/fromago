@@ -7,6 +7,9 @@ import menu.menubar;
 import buttons.layout;
 
 void main(string[] args) {
+	// load Fromago config files
+	configSetup();
+	
 	// main window
 	mainWindow = new Window("Fromago Calc", windowWidth, windowHeight, 
 		(mw) {
@@ -25,7 +28,6 @@ void main(string[] args) {
 		}
 	);
 }
-
 
 
 

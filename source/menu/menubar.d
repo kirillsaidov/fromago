@@ -16,6 +16,9 @@ class FromagoMenuBar : MenuBar {
 		// adding a 'Calculator' submenu header dropdown list and its submenu items
 		append(new MenuHeader("Calculator", new Submenu(calculatorSubmenuItems())));
 		
+		// adding a 'Language' submenu header dropdown list and its submenu items
+		append(new MenuHeader("Language", new Submenu(languageSubmenuItems())));
+		
 		// adding a 'Help' submenu header dropdown list and its submenu items
 		append(new MenuHeader("Help", new Submenu(helpSubmenuItems())));
 	}
