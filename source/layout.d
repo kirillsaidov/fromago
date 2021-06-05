@@ -7,6 +7,7 @@ import meta;
 import menu.submenu.about;
 import menu.submenu.solution.concentration;
 import menu.submenu.salting.time;
+import menu.submenu.price;
 
 // buttons
 import buttons.calcbutton;
@@ -23,6 +24,11 @@ auto getAllButtons() {
 			"Calculate salting time",
 			240, 30,
 			&calculateSaltingTime
+		),
+		new CalcButton(
+			"Calculate cheese price",
+			240, 30,
+			&calculateCheesePrice
 		)
 	];
 }
@@ -39,11 +45,20 @@ MenuItem[] calculatorSubmenuItems() {
 				);
 			}
 		), 
-		new SubmenuItem("Calculate substance quantity", 
+		new SubmenuItem("Calculate salting time", 
 			(mi) {
 				mi.addOnActivate(
 					(mi) {
 						calculateSaltingTime();
+					}
+				);
+			}
+		), 
+		new SubmenuItem("Calculate cheese price", 
+			(mi) {
+				mi.addOnActivate(
+					(mi) {
+						calculateCheesePrice();
 					}
 				);
 			}
