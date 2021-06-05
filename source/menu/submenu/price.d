@@ -68,7 +68,7 @@ class CalculatorCheesePrice : DialogForm {
 		entryCheeseTotalWeight = new PadEntry(BoxJustify.Left, "0");
 		attach(entryCheeseTotalWeight, 1, 1, 1, 1);
 
-		entryMarkupCoef = new PadEntry(BoxJustify.Left, "1");
+		entryMarkupCoef = new PadEntry(BoxJustify.Left, "50");
 		attach(entryMarkupCoef, 1, 2, 1, 1);
 		
 		entryPrice = new PadEntry(BoxJustify.Left, "0");
@@ -81,7 +81,7 @@ class CalculatorCheesePrice : DialogForm {
 		labelCheeseTotalWeightUnit = new PadLabel(BoxJustify.Left, "grams");
 		attach(labelCheeseTotalWeightUnit, 2, 1, 1, 1);
 
-		labelMarkupCoefUnit = new PadLabel(BoxJustify.Left, "multiple");
+		labelMarkupCoefUnit = new PadLabel(BoxJustify.Left, "%");
 		attach(labelMarkupCoefUnit, 2, 2, 1, 1);
 		
 		labelPriceUnit = new PadLabel(BoxJustify.Left, "per 100 grams");
@@ -99,12 +99,19 @@ class CalculatorCheesePrice : DialogForm {
 					// get all data from entries
 					auto data = getData();
 					
+					// if either is 0 (empty), do nothing
 					if(!data["cost"] && !data["weight"]) {
 						return;
 					}
 					
+					// calculate price
 					auto price = calcPrice(data["cost"], data["weight"], data["markup"]);
 					entryPrice.setText(price);
+					
+					// if markup coef is empty, set it to 0
+					if(!data["markup"]) {
+						entryMarkupCoef.setText("0");
+					}
 				}
 				break;
 			case REJECT:
@@ -127,7 +134,7 @@ class CalculatorCheesePrice : DialogForm {
 	private void clearEntries() {
 		entryCost.setText("0");
 		entryPrice.setText("0");
-		entryMarkupCoef.setText("1");
+		entryMarkupCoef.setText("50");
 		entryCheeseTotalWeight.setText("0");
 	}
 	
@@ -136,14 +143,15 @@ class CalculatorCheesePrice : DialogForm {
 		return to!(float[string])([
 			"cost" : entryCost.getText().replaceEmptyWith("0").strTo!float(),
 			"weight" : entryCheeseTotalWeight.getText().replaceEmptyWith("0").strTo!float(),
-			"markup" : entryMarkupCoef.getText().replaceEmptyWith("1").strTo!float(),
+			"markup" : entryMarkupCoef.getText().replaceEmptyWith("0").strTo!float(),
 			"price" : 0
 		]);
 	}
 	
 	// calculating new required time
 	private string calcPrice(float cost, float weight, float markup) {
-		return (to!string((cost / weight) * 100 * markup));
+		// FORMULA: price = (cost / weight) * 100 * ((100 + markup) / 100)
+		return (to!string((cost / weight) * (100 + markup)));
 	}
 }
 
