@@ -1,0 +1,7 @@
+about.d: (soon)
+	1. update 'About' window dialog
+	2. add localization support
+
+documentation.d: (last)
+	1. add documentation window dialog
+	2. add localization support

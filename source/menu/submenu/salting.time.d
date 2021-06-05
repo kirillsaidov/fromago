@@ -6,8 +6,8 @@ import meta;
 void calculateSaltingTime() {
 	// calculateSaltingTime window
 	new DialogWindow(mainWindow, 
-		"Salting Time Calc", 
-		["Calculate", "Clear", "Close"], 
+		lang["Salting Time Calc"].str, 
+		[lang["Calculate"].str, lang["Clear"].str, lang["Close"].str], 
 		[ResponseType.YES, ResponseType.REJECT, ResponseType.CANCEL],
 		new CalculatorSaltingTime()
 	);
@@ -52,16 +52,16 @@ class CalculatorSaltingTime : DialogForm {
 		setBorderWidth(borderWidth);
 		
 		// column 1
-		labelConcentration = new PadLabel(BoxJustify.Left, "Solution concentration");
+		labelConcentration = new PadLabel(BoxJustify.Left, lang["Solution concentration"].str);
 		attach(labelConcentration, 0, 0, 1, 1);
 
-		labelRequiredTime = new PadLabel(BoxJustify.Left, "Required time");
+		labelRequiredTime = new PadLabel(BoxJustify.Left, lang["Required time"].str);
 		attach(labelRequiredTime, 0, 1, 1, 1);
 
-		labelCheeseTotalWeight = new PadLabel(BoxJustify.Left, "Cheese total weight");
+		labelCheeseTotalWeight = new PadLabel(BoxJustify.Left, lang["Cheese total weight"].str);
 		attach(labelCheeseTotalWeight, 0, 2, 1, 1);
 		
-		labelTotalSaltingTime = new PadLabel(BoxJustify.Left, "Total salting time");
+		labelTotalSaltingTime = new PadLabel(BoxJustify.Left, lang["Total salting time"].str);
 		attach(labelTotalSaltingTime, 0, 3, 1, 1);
 		
 		// column 2
@@ -81,13 +81,13 @@ class CalculatorSaltingTime : DialogForm {
 		labelConcentrationUnit = new PadLabel(BoxJustify.Left, "%");
 		attach(labelConcentrationUnit, 2, 0, 1, 1);
 
-		labelRequiredTimeUnit = new PadLabel(BoxJustify.Left, "mins per 100 grams");
+		labelRequiredTimeUnit = new PadLabel(BoxJustify.Left, lang["mins per 100 grams"].str);
 		attach(labelRequiredTimeUnit, 2, 1, 1, 1);
 
-		labelCheeseTotalWeightUnit = new PadLabel(BoxJustify.Left, "grams");
+		labelCheeseTotalWeightUnit = new PadLabel(BoxJustify.Left, lang["grams"].str);
 		attach(labelCheeseTotalWeightUnit, 2, 2, 1, 1);
 		
-		labelTotalSaltingTimeUnit = new PadLabel(BoxJustify.Left, "h-hours, m-minutes");
+		labelTotalSaltingTimeUnit = new PadLabel(BoxJustify.Left, lang["h-hours, m-minutes"].str);
 		attach(labelTotalSaltingTimeUnit, 2, 3, 1, 1);
 		
 		// set margin space
@@ -166,8 +166,8 @@ class CalculatorSaltingTime : DialogForm {
 	// calculating salting time (readable human-friendly format)
 	private string calcTotalSaltingTimeReadable(float weight, float concentration, float coef) {
 		float salting_time = weight / 100 * concentration * coef / 60;
-		float hours = to!float(to!int(salting_time));
-		float minutes = (salting_time - hours) * 60;
+		int hours = to!int(salting_time);
+		int minutes = to!int((salting_time - hours) * 60);
 		
 		return (to!string(hours) ~ "h " ~ to!string(minutes) ~ "m");
 	}

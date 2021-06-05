@@ -11,7 +11,7 @@ void main(string[] args) {
 	configSetup();
 	
 	// main window
-	mainWindow = new Window("Fromago Calc", windowWidth, windowHeight, 
+	mainWindow = new Window(lang["Fromago Calc"].str, windowWidth, windowHeight, 
 		(mw) {
 			// add gui box element
 			mw.add(new GUIBox(Orientation.VERTICAL, 0, 

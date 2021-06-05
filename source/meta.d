@@ -1,6 +1,6 @@
 module meta;
 
-// import mostly used GTKD
+// import mostly used GTKD elements
 public import gtk.MainWindow;
 public import gtk.Box;
 public import gtk.Main;
@@ -23,9 +23,6 @@ public import layout;
 
 // fromago app config
 public import config;
-
-// localization support
-public import localization;
 
 //window dimensions
 immutable windowWidth = 640;

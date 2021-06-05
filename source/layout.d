@@ -16,17 +16,17 @@ import buttons.calcbutton;
 auto getAllButtons() {
 	return [
 		new CalcButton(
-			"Calculate the solution concentration",
+			lang["Calculate the solution concentration"].str,
 			240, 30,
 			&calculateSolutionConcentration
 		),
 		new CalcButton(
-			"Calculate salting time",
+			lang["Calculate salting time"].str,
 			240, 30,
 			&calculateSaltingTime
 		),
 		new CalcButton(
-			"Calculate cheese price",
+			lang["Calculate cheese price"].str,
 			240, 30,
 			&calculateCheesePrice
 		)
@@ -36,7 +36,7 @@ auto getAllButtons() {
 // return all 'Help' submenu items
 MenuItem[] calculatorSubmenuItems() {
 	return [
-		new SubmenuItem("Calculate the solution concentration", 
+		new SubmenuItem(lang["Calculate the solution concentration"].str, 
 			(MenuItem mi) {
 				mi.addOnActivate(
 					(mi) {
@@ -45,7 +45,7 @@ MenuItem[] calculatorSubmenuItems() {
 				);
 			}
 		), 
-		new SubmenuItem("Calculate salting time", 
+		new SubmenuItem(lang["Calculate salting time"].str, 
 			(mi) {
 				mi.addOnActivate(
 					(mi) {
@@ -54,7 +54,7 @@ MenuItem[] calculatorSubmenuItems() {
 				);
 			}
 		), 
-		new SubmenuItem("Calculate cheese price", 
+		new SubmenuItem(lang["Calculate cheese price"].str, 
 			(mi) {
 				mi.addOnActivate(
 					(mi) {
@@ -69,10 +69,10 @@ MenuItem[] calculatorSubmenuItems() {
 // return all 'Fromago' submenu items
 MenuItem[] fromagoSubmenuItems() {
 	return [
-		new SubmenuItem("About",		
+		new SubmenuItem(lang["About"].str,		
 			(mi) {
 				mi.addOnActivate((mi) {
-					Window about = new Window("About", 360, 210, 
+					Window about = new Window(lang["About"].str, 360, 210, 
 						(mw) {
 							mw.add(new GUIBox(Orientation.VERTICAL, 0, (Box b) {
 							// packing the element into guibox
@@ -83,7 +83,7 @@ MenuItem[] fromagoSubmenuItems() {
 			}
 		),
 		new SeparatorMenuItem(),
-		new SubmenuItem("Quit", 
+		new SubmenuItem(lang["Quit"].str, 
 			(mi) {
 				mi.addOnActivate(
 					(mi) {
@@ -98,17 +98,17 @@ MenuItem[] fromagoSubmenuItems() {
 // return all 'Language' submenu items
 MenuItem[] languageSubmenuItems() {
 	return [
-		new SubmenuItem("English", 
+		new SubmenuItem(lang["English"].str, 
 			(mi) {
 				mi.addOnActivate(
 					(mi) {
 						// if language config was updated successfully, restart the app
 						if(changeLangConfig(LangCode.English)) {
 							new DialogWindow(mainWindow, 
-								"Info!", 
-								["Quit now", "OK"], 
+								lang["Info!"].str, 
+								[lang["Quit now"].str, lang["OK"].str], 
 								[ResponseType.YES, ResponseType.NO],
-								new CustomDialogAction("Interface language has been changed! Restart required for changes to take place!",
+								new CustomDialogAction(lang["Interface language"].str,
 									(r, d) {
 										switch(r) with(ResponseType) {
 											case YES:
@@ -132,17 +132,17 @@ MenuItem[] languageSubmenuItems() {
 				);
 			}
 		),
-		new SubmenuItem("Russian", 
+		new SubmenuItem(lang["Russian"].str, 
 			(mi) {
 				mi.addOnActivate(
 					(mi) {
 						// if language config was updated successfully, restart the app
 						if(changeLangConfig(LangCode.Russian)) {
 							new DialogWindow(mainWindow, 
-								"Info!", 
-								["Quit now", "OK"], 
+								lang["Info!"].str, 
+								[lang["Quit now"].str, lang["OK"].str], 
 								[ResponseType.YES, ResponseType.NO],
-								new CustomDialogAction("Interface language has been changed! Restart required for changes to take place!",
+								new CustomDialogAction(lang["Interface language"].str,
 									(r, d) {
 										switch(r) with(ResponseType) {
 											case YES:
@@ -172,7 +172,7 @@ MenuItem[] languageSubmenuItems() {
 // return all 'Help' submenu items
 MenuItem[] helpSubmenuItems() {
 	return [
-		new SubmenuItem("Documentation", 
+		new SubmenuItem(lang["Documentation"].str, 
 			(mi) {
 				mi.addOnActivate(
 					(mi) {

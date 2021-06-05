@@ -22,7 +22,7 @@ class TextDrawingArea : DrawingArea {
 	// about text
 	immutable string[] text = [
 		// the header
-		"Fromago Calc v1.2",
+		"Fromago Calc v1.3",
 	
 		// the rest of the text
 		"Fromago is a ratio calculator for cooking cheese. It",

@@ -1,20 +1,28 @@
 module config;
 
+// std lib
+import std.json: JSONValue, parseJSON;
 import std.string: strip;
 import std.stdio: File, readln;
 import std.file: exists, mkdir;
 import std.path: buildPath;
 import std.conv: to;
 
+// localization support
+import localization;
+
 // public variables
 public {
 	// language code (localization)
 	LangCode languageCode = LangCode.English;
 	
+	// Localization language
+	JSONValue lang;
+	
 	// language codes
-	enum LangCode: ubyte {
-		English = 0,
-		Russian, 
+	enum LangCode: string {
+		English = "English",
+		Russian = "Russian", 
 	}
 	
 	// sets up a config directory for the application
@@ -23,8 +31,12 @@ public {
 		if(!configdir.exists) {
 			configdir.mkdir;
 		}
-	
+		
+		// get language code (load language config file)
 		languageCode = loadLangConfig();
+		
+		// load localization dictionary
+		lang = parseJSON(dictionary)[languageCode];
 	}
 	
 	// changes the language of Fromago and saves it

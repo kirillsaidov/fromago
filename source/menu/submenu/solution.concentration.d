@@ -6,8 +6,8 @@ import meta;
 void calculateSolutionConcentration() {
 	// calculateSolutionConcentration window
 	new DialogWindow(mainWindow, 
-		"Solution Concentration Calc", 
-		["Calculate", "Clear", "Close"], 
+		lang["Solution Concentration Calc"].str, 
+		[lang["Calculate"].str, lang["Clear"].str, lang["Close"].str], 
 		[ResponseType.YES, ResponseType.REJECT, ResponseType.CANCEL],
 		new CalculatorSolutionConcentration()
 	);
@@ -48,16 +48,16 @@ class CalculatorSolutionConcentration : DialogForm {
 		setBorderWidth(borderWidth);
 		
 		// column 1
-		labelConcentration = new PadLabel(BoxJustify.Left, "Solution concentration");
+		labelConcentration = new PadLabel(BoxJustify.Left, lang["Solution concentration"].str);
 		attach(labelConcentration, 0, 0, 1, 1);
 
-		labelSubstanceQuantity = new PadLabel(BoxJustify.Left, "Substance quantity");
+		labelSubstanceQuantity = new PadLabel(BoxJustify.Left, lang["Substance quantity"].str);
 		attach(labelSubstanceQuantity, 0, 1, 1, 1);
 
-		labelSolventQuantity = new PadLabel(BoxJustify.Left, "Solvent quantity");
+		labelSolventQuantity = new PadLabel(BoxJustify.Left, lang["Solvent quantity"].str);
 		attach(labelSolventQuantity, 0, 2, 1, 1);
 		
-		labelSolutionQuantity = new PadLabel(BoxJustify.Left, "Solution quantity");
+		labelSolutionQuantity = new PadLabel(BoxJustify.Left, lang["Solution quantity"].str);
 		attach(labelSolutionQuantity, 0, 3, 1, 1);
 		
 		// column 2
@@ -77,13 +77,13 @@ class CalculatorSolutionConcentration : DialogForm {
 		labelConcentrationUnit = new PadLabel(BoxJustify.Left, "%");
 		attach(labelConcentrationUnit, 2, 0, 1, 1);
 
-		labelSubstanceQuantityUnit = new PadLabel(BoxJustify.Left, "grams");
+		labelSubstanceQuantityUnit = new PadLabel(BoxJustify.Left, lang["grams"].str);
 		attach(labelSubstanceQuantityUnit, 2, 1, 1, 1);
 
-		labelSolventQuantityUnit = new PadLabel(BoxJustify.Left, "grams");
+		labelSolventQuantityUnit = new PadLabel(BoxJustify.Left, lang["grams"].str);
 		attach(labelSolventQuantityUnit, 2, 2, 1, 1);
 		
-		labelSolutionQuantityUnit = new PadLabel(BoxJustify.Left, "grams");
+		labelSolutionQuantityUnit = new PadLabel(BoxJustify.Left, lang["grams"].str);
 		attach(labelSolutionQuantityUnit, 2, 3, 1, 1);
 		
 		// set margin space

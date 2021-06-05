@@ -6,8 +6,8 @@ import meta;
 void calculateCheesePrice() {
 	// calculateCheesePrice window
 	new DialogWindow(mainWindow, 
-		"Price Calc", 
-		["Calculate", "Clear", "Close"], 
+		lang["Price Calc"].str, 
+		[lang["Calculate"].str, lang["Clear"].str, lang["Close"].str], 
 		[ResponseType.YES, ResponseType.REJECT, ResponseType.CANCEL],
 		new CalculatorCheesePrice()
 	);
@@ -49,16 +49,16 @@ class CalculatorCheesePrice : DialogForm {
 		setBorderWidth(borderWidth);
 		
 		// column 1
-		labelCost = new PadLabel(BoxJustify.Left, "Cost of production");
+		labelCost = new PadLabel(BoxJustify.Left, lang["Cost of production"].str);
 		attach(labelCost, 0, 0, 1, 1);
 
-		labelCheeseTotalWeight = new PadLabel(BoxJustify.Left, "Cheese total weight");
+		labelCheeseTotalWeight = new PadLabel(BoxJustify.Left, lang["Cheese total weight"].str);
 		attach(labelCheeseTotalWeight, 0, 1, 1, 1);
 
-		labelMarkupCoef = new PadLabel(BoxJustify.Left, "Markup coefficient");
+		labelMarkupCoef = new PadLabel(BoxJustify.Left, lang["Markup coefficient"].str);
 		attach(labelMarkupCoef, 0, 2, 1, 1);
 		
-		labelPrice = new PadLabel(BoxJustify.Left, "Price");
+		labelPrice = new PadLabel(BoxJustify.Left, lang["Price"].str);
 		attach(labelPrice, 0, 3, 1, 1);
 		
 		// column 2
@@ -75,16 +75,16 @@ class CalculatorCheesePrice : DialogForm {
 		attach(entryPrice, 1, 3, 1, 1);
 				
 		// column 3
-		labelCostUnit = new PadLabel(BoxJustify.Left, "units");
+		labelCostUnit = new PadLabel(BoxJustify.Left, lang["units"].str);
 		attach(labelCostUnit, 2, 0, 1, 1);
 
-		labelCheeseTotalWeightUnit = new PadLabel(BoxJustify.Left, "grams");
+		labelCheeseTotalWeightUnit = new PadLabel(BoxJustify.Left, lang["grams"].str);
 		attach(labelCheeseTotalWeightUnit, 2, 1, 1, 1);
 
 		labelMarkupCoefUnit = new PadLabel(BoxJustify.Left, "%");
 		attach(labelMarkupCoefUnit, 2, 2, 1, 1);
 		
-		labelPriceUnit = new PadLabel(BoxJustify.Left, "per 100 grams");
+		labelPriceUnit = new PadLabel(BoxJustify.Left, lang["per 100 grams"].str);
 		attach(labelPriceUnit, 2, 3, 1, 1);
 		
 		// set margin space

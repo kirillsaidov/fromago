@@ -11,16 +11,16 @@ class FromagoMenuBar : MenuBar {
 		super();
 		
 		// adding a 'Fromago' submenu header dropdown list and its submenu items
-		append(new MenuHeader("Fromago", new Submenu(fromagoSubmenuItems())));
+		append(new MenuHeader(lang["Fromago"].str, new Submenu(fromagoSubmenuItems())));
 				
 		// adding a 'Calculator' submenu header dropdown list and its submenu items
-		append(new MenuHeader("Calculator", new Submenu(calculatorSubmenuItems())));
+		append(new MenuHeader(lang["Calculator"].str, new Submenu(calculatorSubmenuItems())));
 		
 		// adding a 'Language' submenu header dropdown list and its submenu items
-		append(new MenuHeader("Language", new Submenu(languageSubmenuItems())));
+		append(new MenuHeader(lang["Language"].str, new Submenu(languageSubmenuItems())));
 		
 		// adding a 'Help' submenu header dropdown list and its submenu items
-		append(new MenuHeader("Help", new Submenu(helpSubmenuItems())));
+		append(new MenuHeader(lang["Help"].str, new Submenu(helpSubmenuItems())));
 	}
 }
 
