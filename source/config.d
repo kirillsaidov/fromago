@@ -62,7 +62,7 @@ private {
 		LangCode langCode = LangCode.English;
 		if(!path_configlang.exists) {
 			auto file = File(path_configlang, "w");
-			file.write(LangCode.English);
+			file.writeln(LangCode.English);
 			file.close();
 		} else {
 			auto file = File(path_configlang, "r");
@@ -77,7 +77,7 @@ private {
 	void saveLangConfig(LangCode langCode) {		
 		// save the config
 		auto file = File(path_configlang, "w");
-		file.write(langCode);
+		file.writeln(langCode);
 		file.close();
 	}
 }

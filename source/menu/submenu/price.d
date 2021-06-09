@@ -25,18 +25,26 @@ class CalculatorCheesePrice : DialogForm {
 		PadLabel labelCheeseTotalWeight;
 		PadLabel labelMarkupCoef;
 		PadLabel labelPrice;
+		PadLabel labelEmpty;
+		PadLabel labelCalculateFor;
+		PadLabel labelCheeseWeight;
+		PadLabel labelTotalPrice;
 		
 		// unit measure labels
 		PadLabel labelCostUnit;
 		PadLabel labelCheeseTotalWeightUnit;
 		PadLabel labelMarkupCoefUnit;
 		PadLabel labelPriceUnit;
+		PadLabel labelCheeseWeightUnit;
+		PadLabel labelTotalPriceUnit;
 
 		// entry text box
 		PadEntry entryCost;
 		PadEntry entryCheeseTotalWeight;
 		PadEntry entryMarkupCoef;
 		PadEntry entryPrice;
+		PadEntry entryCheeseWeight;
+		PadEntry entryTotalPrice;
 	}
 	
 	
@@ -61,6 +69,12 @@ class CalculatorCheesePrice : DialogForm {
 		labelPrice = new PadLabel(BoxJustify.Left, lang["Price"].str);
 		attach(labelPrice, 0, 3, 1, 1);
 		
+		labelCheeseWeight = new PadLabel(BoxJustify.Left, lang["Cheese weight"].str);
+		attach(labelCheeseWeight, 0, 6, 1, 1);
+		
+		labelTotalPrice = new PadLabel(BoxJustify.Left, lang["Total price"].str);
+		attach(labelTotalPrice, 0, 7, 1, 1);
+		
 		// column 2
 		entryCost = new PadEntry(BoxJustify.Left, "0");
 		attach(entryCost, 1, 0, 1, 1);
@@ -73,6 +87,18 @@ class CalculatorCheesePrice : DialogForm {
 		
 		entryPrice = new PadEntry(BoxJustify.Left, "0");
 		attach(entryPrice, 1, 3, 1, 1);
+		
+		labelEmpty = new PadLabel(BoxJustify.Left, "");
+		attach(labelEmpty, 1, 4, 1, 1);
+		
+		labelCalculateFor = new PadLabel(BoxJustify.Center, lang["CALCULATE FOR"].str);
+		attach(labelCalculateFor, 1, 5, 1, 1);
+		
+		entryCheeseWeight = new PadEntry(BoxJustify.Left, "0");
+		attach(entryCheeseWeight, 1, 6, 1, 1);
+		
+		entryTotalPrice = new PadEntry(BoxJustify.Left, "0");
+		attach(entryTotalPrice, 1, 7, 1, 1);
 				
 		// column 3
 		labelCostUnit = new PadLabel(BoxJustify.Left, lang["units"].str);
@@ -85,12 +111,18 @@ class CalculatorCheesePrice : DialogForm {
 		attach(labelMarkupCoefUnit, 2, 2, 1, 1);
 		
 		labelPriceUnit = new PadLabel(BoxJustify.Left, lang["per 100 grams"].str);
-		attach(labelPriceUnit, 2, 3, 1, 1);
+		attach(labelPriceUnit, 2, 3, 1, 1);	
+		
+		labelCheeseWeightUnit = new PadLabel(BoxJustify.Left, lang["grams"].str);
+		attach(labelCheeseWeightUnit, 2, 6, 1, 1);
+		
+		labelTotalPriceUnit = new PadLabel(BoxJustify.Left, lang["units"].str);
+		attach(labelTotalPriceUnit, 2, 7, 1, 1);
 		
 		// set margin space
 		setMarginBottom(marginBottom);
 	}
-	
+
 	// do something on action
 	void onAction(int r, Dialog d) {
 		switch(r) with(ResponseType) {
@@ -104,13 +136,19 @@ class CalculatorCheesePrice : DialogForm {
 						return;
 					}
 					
-					// calculate price
+					// CALCULATE PRICE
 					auto price = calcPrice(data["cost"], data["weight"], data["markup"]);
 					entryPrice.setText(price);
 					
 					// if markup coef is empty, set it to 0
 					if(!data["markup"]) {
 						entryMarkupCoef.setText("0");
+					}
+
+					// CALCULATE TOTAL PRICE
+					if(data["price"]) {
+						auto totalPrice = calcTotalPrice(data["cheese weight"], data["price"]);
+						entryTotalPrice.setText(totalPrice);
 					}
 				}
 				break;
@@ -136,6 +174,8 @@ class CalculatorCheesePrice : DialogForm {
 		entryPrice.setText("0");
 		entryMarkupCoef.setText("50");
 		entryCheeseTotalWeight.setText("0");
+		entryCheeseWeight.setText("0");
+		entryTotalPrice.setText("0");
 	}
 	
 	// get all data
@@ -144,14 +184,21 @@ class CalculatorCheesePrice : DialogForm {
 			"cost" : entryCost.getText().replaceEmptyWith("0").strTo!float(),
 			"weight" : entryCheeseTotalWeight.getText().replaceEmptyWith("0").strTo!float(),
 			"markup" : entryMarkupCoef.getText().replaceEmptyWith("0").strTo!float(),
-			"price" : 0
+			"price" : entryPrice.getText().replaceEmptyWith("0").strTo!float(),
+			"cheese weight" : entryCheeseWeight.getText().replaceEmptyWith("0").strTo!float(),
+			"total price" : 0,
 		]);
 	}
 	
-	// calculating new required time
+	// calculating price per 100 grams
 	private string calcPrice(float cost, float weight, float markup) {
 		// FORMULA: price = (cost / weight) * 100 * ((100 + markup) / 100)
 		return (to!string((cost / weight) * (100 + markup)));
+	}
+	
+	// calculating total price for custom weight given price per 100 grams
+	private string calcTotalPrice(float weight, float price) {
+		return (to!string(weight * price / 100));
 	}
 }
 
