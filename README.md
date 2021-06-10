@@ -16,5 +16,5 @@ A ratio calculator for cooking cheese.
 Dub will download the additional libraries it needs and then it will build the app. The executable can be found in the `bin` folder.
 
 # Usage
-Fromago has `Documentation` built into the app. It can be found at the top of the menu. 
+Fromago has `Documentation` built into the app. It can be found at the top of the menu. [soon]
 
