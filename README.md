@@ -1,6 +1,7 @@
 # Fromago
 
 A ratio calculator for cooking cheese.
+<center><img src="imgs/screenshot.png"></center>
 
 # How to build the app
 ### Requirements
