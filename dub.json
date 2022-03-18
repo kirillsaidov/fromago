@@ -2,9 +2,6 @@
 	"authors": [
 		"Kirill Saidov"
 	],
-	"buildOptions": [
-		"debugMode"
-	],
 	"buildRequirements": [
 		"allowWarnings"
 	],
