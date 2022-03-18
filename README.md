@@ -1,3 +1,4 @@
+<img src="imgs/icons8-puzzle-500.png" width="64" height="64" align="left"></img>
 # Fromago
 
 A ratio calculator for cooking cheese.
