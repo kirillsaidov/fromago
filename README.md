@@ -1,10 +1,11 @@
 <img src="imgs/icon.png" width="64" height="64" align="left"></img>
 # Fromago
 
-A ratio calculator for cooking cheese.
+A useful calculator utility for cooking cheese. Mobile app may be found [here](https://github.com/kirillsaidov/fromago-calc).
+
 <center><img src="imgs/screenshot.png"></center>
 
-# How to build the app
+## How to build the app
 ### Requirements
 1. `dmd`, `gdc` or `ldc` [D compiler](https://dlang.org/download.html)
 2. `dub` [package manager](https://github.com/dlang/dub/releases/tag/v1.23.0)
@@ -17,6 +18,10 @@ A ratio calculator for cooking cheese.
 
 Dub will download the additional libraries it needs and then it will build the app. The executable can be found in the `bin` folder.
 
-# Usage
+## Usage
 Fromago has `Documentation` built into the app. It can be found at the top of the menu. [soon]
+
+## LICENSE
+All code is licensed under the GPL license.
+
 
