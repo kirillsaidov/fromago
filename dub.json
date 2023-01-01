@@ -5,12 +5,12 @@
 	"buildRequirements": [
 		"allowWarnings"
 	],
-	"targetPath": "bin",
 	"copyright": "Copyright © 2021, Kirill Saidov",
 	"dependencies": {
-		"gtk-d": "~>3.9.0"
+		"gtk-d": "~>3.10.0"
 	},
 	"description": "Fromago - a ratio calculator for cooking cheese",
 	"license": "GPLv3",
-	"name": "fromago"
+	"name": "fromago",
+	"targetPath": "bin"
 }

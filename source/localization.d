@@ -1,6 +1,6 @@
 module localization;
 
-immutable wstring dictionary = `{
+immutable dictionary = `{
    "English": {
       "Fromago Calc": "Fromago Calc",
       "Fromago": "Fromago",
