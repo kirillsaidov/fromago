@@ -24,9 +24,12 @@ public import layout;
 // fromago app config
 public import config;
 
-//window dimensions
+// window dimensions
 immutable windowWidth = 640;
 immutable windowHeight = 480;
+
+// relaunch the application
+bool relaunch = false;
 
 // main window
 Window mainWindow;

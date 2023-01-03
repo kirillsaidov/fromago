@@ -112,7 +112,8 @@ MenuItem[] languageSubmenuItems() {
 									(r, d) {
 										switch(r) with(ResponseType) {
 											case YES:
-												{
+												{	
+													relaunch = true;
 													Main.quit();
 												}
 												break;
@@ -147,6 +148,7 @@ MenuItem[] languageSubmenuItems() {
 										switch(r) with(ResponseType) {
 											case YES:
 												{
+													relaunch = true;
 													Main.quit();
 												}
 												break;
