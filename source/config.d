@@ -5,7 +5,7 @@ import std.json: JSONValue, parseJSON;
 import std.string: strip;
 import std.stdio: File, readln;
 import std.file: exists, mkdirRecurse;
-import std.path: buildPath;
+import std.path: buildPath, expandTilde;
 import std.conv: to;
 import std.process: env = environment;
 
