@@ -56,7 +56,7 @@ private {
     string configDir;
     enum configFileLang = "lang.config";
     static this() {
-        configDir = env.get("HOME", env.get("APPDATA", env.get("USERPROFILE", "~".expandTilde)));
+        configDir = env.get("HOME", env.get("APPDATA", env.get("USERPROFILE", "~".expandTilde))).buildPath(".fromago");
     }
 
     // returns the code of the language (it looks for language.config file in )
