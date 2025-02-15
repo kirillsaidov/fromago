@@ -54,13 +54,9 @@ public {
 private {
     // config directories and files
     string configDir;
-    immutable string configFileLang = "lang.config";
+    enum configFileLang = "lang.config";
     static this() {
-        version(Windows) {
-            configDir = env.get("USERPROFILE", "C:\\Users\\Public").buildPath(".fromago");
-        } else {
-            configDir = env.get("HOME", "~".expandTilde).buildPath(".fromago");
-        }
+        configDir = env.get("HOME", env.get("APPDATA", "USERPROFILE"));
     }
 
     // returns the code of the language (it looks for language.config file in )
@@ -69,14 +65,12 @@ private {
         LangCode langCode = LangCode.English;
         if(!configDir.buildPath(configFileLang).exists) {
             auto file = File(configDir.buildPath(configFileLang), "w");
-            scope(exit) { file.close(); }
-            
             file.writeln(langCode);
+            file.close();
         } else {
-            auto file = File(configDir.buildPath(configFileLang), "r");
-            scope(exit) { file.close(); }
-            
+            auto file = File(configDir.buildPath(configFileLang), "r");            
             langCode = file.readln.strip.to!LangCode;
+            file.close();
         }
     
         return langCode;
@@ -85,10 +79,9 @@ private {
     // save file config
     void saveLangConfig(LangCode langCode) {		
         // save the config
-        auto file = File(configDir.buildPath(configFileLang), "w");
-        scope(exit) { file.close(); }
-        
+        auto file = File(configDir.buildPath(configFileLang), "w");        
         file.writeln(langCode);
+        file.close();
     }
 }
 
